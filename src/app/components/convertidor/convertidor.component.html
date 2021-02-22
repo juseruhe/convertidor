@@ -4,7 +4,7 @@
             <div class="mb-3">
                 <label for="cantidad" class="form-label">Ingrese Cantidad</label>
                 <input type="number" class="form-control form-control-lg" id="cantidad" 
-                [(ngModel)]="cantidad"
+                [(ngModel)]="cantidad" (input)="convertir()"
                 placeholder="Ingrese Cantidad...">
               </div>
         </div>
@@ -13,7 +13,7 @@
         <div class="col-lg-6">
             <label for="tengo" class="form-label">Tengo</label>
             <select class="form-select form-select-lg mb-3" id="tengo" 
-           [(ngModel)]="tengo"
+           [(ngModel)]="tengo" (change)="convertir()"
             aria-label=".form-select-lg example">
                 <option *ngFor="let moneda of monedas">{{moneda}}
                 </option>
@@ -22,15 +22,15 @@
         <div class="col-lg-6">
             <label for="quiero" class="form-label">Quiero</label>
             <select class="form-select form-select-lg mb-3" id="quiero" 
-            [(ngModel)] ="quiero"
+            [(ngModel)] ="quiero" (change)="convertir()"
             aria-label=".form-select-lg example">
                 <option *ngFor="let moneda of monedas">{{moneda}}</option>
               </select>
         </div>
     </div>
-    <h5 class="text-center mt-3">
+    <h5 *ngIf="cantidad > 0" class="text-center mt-3">
         <span class="badge bg-success">{{cantidad}} {{tengo}}</span>
         <span class="badge bg-secondary">SON</span>
-        <span class="badge bg-success">{{total}}  {{quiero}}</span>
+        <span class="badge bg-success">{{total | number: '0.0-2'}}  {{quiero}}</span>
     </h5>
 </div>
